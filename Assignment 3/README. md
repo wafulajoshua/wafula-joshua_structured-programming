@@ -1,1 +1,50 @@
+1.A normal variable directly stores a value, such as an integer or a character, inside its own memory location
+When you access or modify a normal variable, you work with that value directly using the variable’s name
+ A pointer, on the other hand, stores the memory address of another variable rather than the value itself
+ Memory is accessed indirectly through the pointer: you first use the pointer to reach the address, and then dereference it with the * operator to read or modify the value stored at that address.
+
+2.Variable declaration introduces a variable by specifying its type and name, while definition allocates memory for it.
+For example, int x; both declares and defines an integer variable x because memory is reserved for storing its value.
+Pointer declaration introduces a pointer variable that can store the address of another variable, while definition allocates memory for the pointer itself
+For example, int *p; declares and defines a pointer p that can hold the address of an integer. 
+The operator * is used in two contexts: during pointer declaration, it specifies that the variable is a pointer type (e.g., int *p; means p is a pointer to an integer), and during dereferencing, it accesses the value stored at the address held by the pointer (e.g., *p = 10; assigns 10 to the variable whose address is stored in p). 
+The operator & is used to obtain the address of a variable. For example, if int x = 5;, then &x gives the memory address of x.
+Assigning p = &x; stores the address of x in the pointer p.
+
+3.Dereferencing a pointer means accessing the value stored at the memory address that the pointer is pointing to. For example, consider the following statements in C: int x = 10;
+int *p;
+p = &x;
+
+printf("%d", *p); (Here, *p accesses the value of x through the pointer.)
+
+Dereferencing can also be used to modify the value stored at the memory address: *p = 20;
+printf("%d", x);
+(dereferencing a pointer allows both reading and writing of the value stored at the memory location it points to)
+
+4.Pointers are preferred when direct memory access or efficient data handling is needed.
+Example 1: Dynamic memory allocation. int arr = (int)malloc(10 * sizeof(int)); 
+(Here, pointers allow flexible array sizes, unlike normal variables) 
+Example 2: Function arguments. void swap(int *a, int *b) { int temp = *a; *a = *b; *b = temp; }
+Pointers let functions modify actual variable values, not just copies. 
+They are also essential in building linked lists and trees, where nodes connect via addresses.
+
+5.Complexity: Pointers make code harder to read and debug.
+Dangling pointers: Using a pointer after freeing memory can cause crashes. 
+Memory leaks: Forgetting to free dynamically allocated memory wastes resources.
+Invalid access: Dereferencing uninitialized or NULL pointers leads to runtime errors.
+Invalid access: Dereferencing uninitialized or NULL pointers leads to runtime errors.
+Security risks: Improper pointer use can cause buffer overflows and vulnerabilities.
+
+6.Call by Value: The function receives a copy of the variable’s value. Changes inside the function do not affect the original variable. Example:void func(int a) { a = 20; } int x = 10; func(x);
+
+Call by Reference: The function receives the variable’s address through a pointer. Changes inside the function affect the original variable. Example:void func(int *a) { *a = 20; } int x = 10; func(&x);
+
+In call by value, data is passed as a copy, while in call by reference, data is passed via memory address.
+
+7.a. Call by value is preferred when the function should not alter the original data.
+Example: passing numbers to a function that only performs calculations, like finding the square of a number.
+b. Call by reference is preferred when the function needs to modify the original data.
+Example: swapping two variables or updating elements in a linked list directly through their addresses.
+
+
 
